@@ -7,4 +7,4 @@
 
 3. 'pip install -r requirments.txt'
 
-4. 'python manage.py runsrever'
+4. 'python manage.py runsrever'# DjangoFirst

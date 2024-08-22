@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*env/
+DS_store
+.idea/
+.vscode/
+*.tmp
+*.db
+*.squlite3

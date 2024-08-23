@@ -43,4 +43,6 @@ def item_detail(request, item_id):
 
     
     return render(request, 'item_detail.html', {'item': item})
-    
+
+def items_list(request):
+    return render(request, 'items_list.html', {'items': items})

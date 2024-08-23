@@ -8,6 +8,14 @@ author= {
 "телефон": "8-923-600-01-02",
 "email": "vasya@mail.ru",
 }
+
+items = [
+    {"id": 1, "name": "Кроссовки abibas", "quantity": 5},
+    {"id": 2, "name": "Куртка кожаная", "quantity": 2},
+    {"id": 5, "name": "Coca-cola 1 литр", "quantity": 12},
+    {"id": 7, "name": "Картофель фри", "quantity": 0},
+    {"id": 8, "name": "Кепка", "quantity": 124},
+]
 def home (request):
     text = """
     <h1>"Изучаем django"</h1>
@@ -24,3 +32,15 @@ def about(request):
     email: <b>{author['email']}</b><br>
     """
     return HttpResponse(text)
+
+def item_detail(request, item_id):
+    
+    item = next((item for item in items if item["id"] == item_id), None)
+
+    
+    if item is None:
+        return HttpResponse("Item not found", status=404)
+
+    
+    return render(request, 'item_detail.html', {'item': item})
+    

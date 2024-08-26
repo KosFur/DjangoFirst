@@ -34,10 +34,10 @@ def about(request):
     """
     return HttpResponse(text)
 
-def item_detail(request, item_id):
     
-    item = next((item for item in items if item["id"] == item_id), None)
-
+def item_detail(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    return render(request, 'item_detail.html', {'item': item})
     
     if item is None:
         return HttpResponse("Item not found", status=404)
@@ -45,9 +45,8 @@ def item_detail(request, item_id):
     
     return render(request, 'item_detail.html', {'item': item})
 
-def items_list(request):
-    return render(request, 'items_list.html', {'items': items})
 
-def items_list2(request):
+
+def items_list(request):
     items = Item.objects.all()
     return render(request, 'items_list.html', {'items': items})

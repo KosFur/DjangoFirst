@@ -6,13 +6,13 @@
 </head>
 <body>
     <h1>Список товаров</h1>
-    <ul>
+    <ol>
         {% for item in items %}
         <li>
             <a href="{% url 'item_detail' item_id=item.id %}">{{ item.name }}</a> 
-            (Количество: {{ item.quantity }})
+            (Бренд: {{ item.brand }}, Количество: {{ item.count }})
         </li>
         {% endfor %}
-    </ul>
+    </ol>
 </body>
 </html>

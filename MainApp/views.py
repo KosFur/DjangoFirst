@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Item
 
 author= {
 "Имя": "Иван",
@@ -45,4 +46,8 @@ def item_detail(request, item_id):
     return render(request, 'item_detail.html', {'item': item})
 
 def items_list(request):
+    return render(request, 'items_list.html', {'items': items})
+
+def items_list2(request):
+    items = Item.objects.all()
     return render(request, 'items_list.html', {'items': items})

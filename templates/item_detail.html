@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ item.name }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block content %}
     <h1>{{ item.name }}</h1>
     <p>Бренд: {{ item.brand }}</p>
 
@@ -13,5 +11,14 @@
     {% else %}
         <p style="color: red;">Товара нет на складе</p>
     {% endif %}
-</body>
-</html>
+
+    <h3>Доступные цвета:</h3>
+    <ul>
+        {% for color in item.colors.all %}
+            <li>
+                <span style="display:inline-block; width:15px; height:15px; background-color: {{ color.color_code }};"></span>
+                {{ color.name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

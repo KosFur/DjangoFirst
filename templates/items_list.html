@@ -1,51 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Список товаров</title>
-    <style>
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
+{% extends 'base.html' %}
 
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 200px;
-            margin: 10px;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
+{% block title %}Список товаров{% endblock %}
 
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card a {
-            text-decoration: none;
-            color: #007bff;
-            font-weight: bold;
-        }
-
-        .card p {
-            color: #333;
-            margin: 5px 0 0 0;
-        }
-    </style>
-</head>
-<body>
+{% block content %}
     <h1>Список товаров</h1>
     <div class="card-container">
         {% for item in items %}
         <div class="card">
             <a href="{% url 'item_detail' item_id=item.id %}">{{ item.name }}</a>
             <p>{{ item.description }}</p>
+            <p>Бренд: {{ item.brand }}</p>
+            {% if item.count > 0 %}
+                <p>Количество на складе: {{ item.count }}</p>
+            {% else %}
+                <p style="color: red;">Товара нет на складе</p>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}

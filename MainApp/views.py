@@ -34,11 +34,10 @@ def about(request):
     email: <b>{author['email']}</b><br>
     """
     return HttpResponse(text)
-
+    
 def item_detail(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     return render(request, 'item_detail.html', {'item': item})
-
 
 
 def items_list(request):

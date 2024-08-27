@@ -7,7 +7,11 @@
 <body>
     <h1>{{ item.name }}</h1>
     <p>Бренд: {{ item.brand }}</p>
-    <p>Количество на складе: {{ item.count }}</p>
+
+    {% if item.count > 0 %}
+        <p>Количество на складе: {{ item.count }}</p>
+    {% else %}
+        <p style="color: red;">Товара нет на складе</p>
+    {% endif %}
 </body>
 </html>
-

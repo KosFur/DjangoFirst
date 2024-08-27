@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 from .models import Item
 
 author= {
@@ -34,15 +35,8 @@ def about(request):
     """
     return HttpResponse(text)
 
-    
 def item_detail(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-    return render(request, 'item_detail.html', {'item': item})
-    
-    if item is None:
-        return HttpResponse("Item not found", status=404)
-
-    
     return render(request, 'item_detail.html', {'item': item})
 
 

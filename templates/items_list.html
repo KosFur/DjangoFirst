@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Список товаров</title>
+    <style>
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .card p {
+            color: #333;
+            margin: 5px 0 0 0;
+        }
+    </style>
 </head>
 <body>
     <h1>Список товаров</h1>
-    <ol>
+    <div class="card-container">
         {% for item in items %}
-        <li>
-            <a href="{% url 'item_detail' item_id=item.id %}">{{ item.name }}</a> 
-            (Бренд: {{ item.brand }}, Количество: {{ item.count }})
-        </li>
+        <div class="card">
+            <a href="{% url 'item_detail' item_id=item.id %}">{{ item.name }}</a>
+            <p>{{ item.description }}</p>
+        </div>
         {% endfor %}
-    </ol>
+    </div>
 </body>
 </html>
